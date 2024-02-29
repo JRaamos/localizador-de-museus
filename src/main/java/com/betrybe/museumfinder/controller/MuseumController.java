@@ -37,6 +37,10 @@ public class MuseumController {
     Museum museum = museumService.createMuseum(ModelDtoConverter.dtoToModel(museumDto));
     return ResponseEntity.status(HttpStatus.CREATED).body(museum);
   }
+
+  /**
+   *nova rota /museums/closest.
+   */
   @GetMapping("/closest")
   public ResponseEntity<MuseumDto> getClosestMuseum(
       @RequestParam(name = "lat") Double latitude,
