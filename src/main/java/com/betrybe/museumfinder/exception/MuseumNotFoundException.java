@@ -1,9 +1,11 @@
 package com.betrybe.museumfinder.exception;
 
-public class MuseumNotFoundException extends RuntimeException{
+/**
+ * MuseumNotFoundException classe.
+ */
+public class MuseumNotFoundException extends RuntimeException {
 
   public MuseumNotFoundException(String message) {
     super(message);
-
   }
 }

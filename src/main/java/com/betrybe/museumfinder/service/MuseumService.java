@@ -3,12 +3,12 @@ package com.betrybe.museumfinder.service;
 import com.betrybe.museumfinder.database.MuseumFakeDatabase;
 import com.betrybe.museumfinder.exception.InvalidCoordinateException;
 import com.betrybe.museumfinder.exception.MuseumNotFoundException;
+import com.betrybe.museumfinder.model.Coordinate;
 import com.betrybe.museumfinder.model.Museum;
 import com.betrybe.museumfinder.util.CoordinateUtil;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.betrybe.museumfinder.model.Coordinate;
 
 
 /**
@@ -23,6 +23,7 @@ public class MuseumService implements MuseumServiceInterface {
   public MuseumService(MuseumFakeDatabase museumDatabase) {
     this.museumDatabase = museumDatabase;
   }
+
   @Override
   public Museum getClosestMuseum(Coordinate coordinate, Double maxDistance) {
     if (!CoordinateUtil.isCoordinateValid(coordinate)) {
@@ -32,7 +33,8 @@ public class MuseumService implements MuseumServiceInterface {
     Optional<Museum> closestMuseum = museumDatabase.getClosestMuseum(coordinate, maxDistance);
 
     if (closestMuseum.isEmpty()) {
-      throw new MuseumNotFoundException("Nenhum museu foi encontrado dentro da distância especificada.");
+      throw new MuseumNotFoundException("Nenhum museu foi encontrado dentro"
+          + " da distância especificada.");
     }
     return closestMuseum.get();
 
@@ -42,6 +44,7 @@ public class MuseumService implements MuseumServiceInterface {
   public Museum getMuseum(Long id) {
     return null;
   }
+
   @Override
   public Museum createMuseum(Museum museum) {
     if (!CoordinateUtil.isCoordinateValid(museum.getCoordinate())) {
